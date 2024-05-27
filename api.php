@@ -1,5 +1,5 @@
 <?php
-require_once 'Database.php';
+require_once 'Dummy.php';
 
 header('Content-Type: application/json');
 header("Access-Control-Allow-Origin: *");
