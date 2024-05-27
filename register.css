@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /*background-image: url('https://th.bing.com/th/id/R.97d7e8497b1b12737d2f5fad0097afe8?rik=G1oaaSMBrnm7bQ&riu=http%3a%2f%2fwww.cartoonbrew.com%2fwp-content%2fuploads%2f2014%2f03%2fmickeymouse-secondseason-a-580x333.jpg&ehk=XrOhsycnc8tYvTPaIpzaBGEtLUP9RAr8%2bzqgYm8akD8%3d&risl=&pid=ImgRaw&r=0');*/
+    background-size: cover;
+}
+
+header, footer {
+    background-color: #ff0000; /* Mickey's red */
+    padding: 10px;
+    text-align: center;
+    color: #ffffff; /* White text */
+    font-weight: bold;
+}
+
+.register-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gif-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.gif-container img {
+    width: 100%;
+    max-width: 400px; /* Adjust as necessary */
+    height: auto;
+    border-radius: 10px;
+}
+
+.gif-container .gif-text {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #ffcc00; /* Mickey's yellow */
+    font-weight: bold;
+}
+
+.register-form {
+    background-color: #000000; /* Black background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    text-align: left;
+    color: #ffffff; /* White text */
+    border: 5px solid #ffcc00; /* Mickey's yellow */
+}
+
+.register-form .flex-input {
+    margin-bottom: 15px;
+}
+
+.register-form .flex-input label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffcc00; /* Mickey's yellow */
+}
+
+.register-form .flex-input input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.register-form .flex-input input[type="text"],
+.register-form .flex-input input[type="email"],
+.register-form .flex-input input[type="password"],
+.register-form .flex-input input[type="number"] {
+    background-color: #ffffff; /* White background */
+    color: #000000; /* Black text */
+    border: 2px solid #ffcc00; /* Mickey's yellow */
+}
+
+.register-form .flex-input button[type="submit"] {
+    background-color: #ff0000; /* Mickey's red */
+    color: #ffffff; /* White text */
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.register-form .flex-input button[type="submit"]:hover {
+    background-color: #cc0000; /* Darker red */
+}
