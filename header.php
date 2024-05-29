@@ -1,3 +1,8 @@
+<?php
+    session_start(); // Track the user's session
+
+?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -14,6 +19,15 @@
     <div id="container">
         <div id="logo">
             <img id="logo-pic" src = "Hoop-logo.png" alt = "Hoop-logo">
+            <?php
+                if (isset($_SESSION['id'])) {
+                    echo '<span><p class="welcome-meessage" >Welcome, ' . htmlspecialchars($_SESSION['name'], ENT_QUOTES, 'UTF-8') . '</p>';
+                    echo '<p><a href="login.php">Logout</a></p>';
+                } else {
+                    echo '<li><a href="login.php">Login</a></li>';
+                    echo '<li><a href="register.php">Register</a></li>';
+                }
+            ?>
         </div>
     </div>
 </body>

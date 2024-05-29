@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             password: password
         };
 
-        fetch('http://localhost/221Prac5/php/api.php', {
+        fetch('http://localhost/COS221/PA5/api.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

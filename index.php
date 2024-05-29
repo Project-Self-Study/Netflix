@@ -49,3 +49,7 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<?php
+    require_once 'footer.php'; // Include header file with session management and theme handling
+?>
