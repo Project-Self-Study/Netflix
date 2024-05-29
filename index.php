@@ -1,5 +1,5 @@
 <?php
-    require_once 'header.php'; // Include the header file
+    require_once 'header.php'; // Include header file with session management and theme handling
 ?>
 
 <!DOCTYPE html>
@@ -19,9 +19,22 @@
     <h1 class="header">Stream.Binge.Repeat.Hoop has it all!</h1>
 
     <div id="categories">
-        <h2 class="category-header">Browse shows</h2>
+        <h2 class="category-title">Browse shows</h2>
         <div class="category" id="category1">
-            <!-- Shows will be dynamically inserted here -->
+            <!-- General shows will be dynamically inserted here -->
+        </div>
+
+        <h2 class="category-title">Action</h2>
+        <div class="category" id="action-thriller">
+            <!-- Action shows will be dynamically inserted here -->
+        </div>
+        <h2 class="category-title">Thriller</h2>
+        <div class="category" id="thriller">
+            <!-- romance shows will be dynamically inserted here -->
+        </div>
+        <h2 class="category-title">Drama</h2>
+        <div class="category" id="drama">
+            <!-- drama shows will be dynamically inserted here -->
         </div>
     </div>
 
