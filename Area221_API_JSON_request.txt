@@ -1,0 +1,117 @@
+{
+    "type": "updateSeasons",
+    "update": {
+        "episode_count": 10,
+        "summary": "New summary for the season."
+    },
+    "search": {
+        "id": 1
+    }
+}
+
+
+{
+    "type": "updateEpisodes",
+    "update": {
+        "name": "Updated Episode Name",
+        "rating": 8.5
+    },
+    "search": {
+        "id": 1
+    }
+}
+
+
+{
+    "type": "updateShow",
+    "update": {
+        "language": "French",
+        "status": "Running"
+    },
+    "search": {
+        "id": 1
+    }
+}
+
+
+
+{
+    "type": "getCrewCast",
+    "return": ""
+}
+
+
+{
+    "type": "getCrewCast",
+    "return": 5,
+    "search": {
+        "show_id": 1,
+        "season": 2
+    },
+    "sort": "name",
+    "order": "DESC"
+}
+
+{
+    "type": "getEpisodes",
+    "return": 5,
+    "search": {
+        "show_id": 1,
+        "season": 2
+    },
+    "sort": "airdate",
+    "order": "DESC"
+}
+
+{
+    "type": "getEpisodes",
+    "return": ""
+}
+
+{
+    "type": "getPeople",
+    "return": 5,
+    "search": {
+        "gender": "Female",
+        "country": "USA"
+    },
+    "sort": "birthday",
+    "order": "DESC"
+}
+
+{
+    "type": "getPeople",
+    "return": ""
+}
+
+{
+    "type": "getSeasons",
+    "return": 5,
+    "search": {
+        "show_id": 1,
+        "episode_count_min": 10
+    },
+    "sort": "episode_count",
+    "order": "DESC"
+}
+
+{
+    "type": "getSeasons",
+    "return": 3
+}
+
+{
+    "type": "getShows",
+    "return": 5,
+    "search": {
+        "language": "English",
+        "rating_min": 8.0
+    },
+    "sort": "rating",
+    "order": "DESC"
+}
+
+{
+    "type": "getShows",
+    "return": ""
+}
