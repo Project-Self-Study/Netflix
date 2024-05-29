@@ -110,7 +110,7 @@ class API
         return bin2hex(random_bytes(10));
     }
 
-    public function login($name, $password)
+    public function login($email, $password)
     {
         /* if (!$this->validateEmail($email)) {
         http_response_code(400);
@@ -119,8 +119,8 @@ class API
     } */
 
         // Corrected SQL query without the extra comma
-        $stmt = $this->connection->prepare("SELECT id, password, API_Key, email FROM users WHERE name = ?");
-        $stmt->bind_param("s", $name);
+        $stmt = $this->connection->prepare("SELECT id, password, API_Key, name FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -129,7 +129,7 @@ class API
                 session_regenerate_id(true); // Regenerate session ID
                 $_SESSION['id'] = $user['id'];
                 $_SESSION['apikey'] = $user['API_Key'];
-                $_SESSION['email'] = $user['email'];
+                $_SESSION['name'] = $user['name'];
 
                 echo json_encode([
                     "status" => "success",
@@ -247,7 +247,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo $api->register($data['name'], $data['surname'], $data['email'], $data['password']);
             break;
         case 'Login':
-            echo $api->login($data['name'], $data['password']);
+            echo $api->login($data['email'], $data['password']);
             break;
         case 'Logout':
             echo $api->logout($data['apikey']);
