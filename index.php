@@ -16,20 +16,58 @@
 
     <body>
         <div class="container">
-            <div class="header">
-                <h1>My Website</h1>
-                <p>My website is the best website in the world</p>
+        </div>
+      
+        <h1 class = "header">Stream.Binge.Repeat.Hoop has it all!</h1>
+
+        <h2 class = "category-title">Category1</h2>
+        <div class = "category">
+            <div class="show">
             </div>
-            <div class="nav">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+            <div class="show">
             </div>
-            <div class="content">
-                <h2>Welcome to my website</h2>
-                <p>This is my website
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+        </div>
+
+
+        <h2 class = "category-title">Category2</h2>
+        <div class = "category">
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+            <div class="show">
+            </div>
+        </div>
     </body>
 
 
