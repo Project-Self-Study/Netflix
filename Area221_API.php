@@ -919,7 +919,367 @@ public function updateSeasons($input) {
 
 
 
+
+public function insertShow($input) {
+    $allowedFields = ['name', 'language', 'genres', 'status', 'runtime', 'premiered', 'officialSite', 'summary', 'rating', 'image'];
+    $fields = [];
+    $placeholders = [];
+    $params = [];
+    $types = '';
+
+    // Extract fields to be inserted
+    if (isset($input['insert']) && is_array($input['insert'])) {
+        foreach ($input['insert'] as $field => $value) {
+            if (in_array($field, $allowedFields)) {
+                $fields[] = $field;
+                $placeholders[] = '?';
+                $params[] = $value;
+                $types .= $this->getType($value);
+            } else {
+                return ['status' => 'error', 'timestamp' => time(), 'data' => 'Invalid insert fields'];
+            }
+        }
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No fields to insert'];
     }
+
+    if (empty($fields)) {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No fields to insert'];
+    }
+
+    $sql = "INSERT INTO shows (" . implode(", ", $fields) . ") VALUES (" . implode(", ", $placeholders) . ")";
+
+    // Debugging: Output the constructed SQL query
+    error_log("SQL Query: $sql");
+
+    $stmt = $this->db->prepare($sql);
+    if (!$stmt) {
+        // Debugging: Output the SQL error
+        error_log("SQL Error: " . $this->db->error);
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Failed to prepare SQL statement'];
+    }
+
+    // Debugging: Ensure types and params match
+    error_log("Types: $types");
+    error_log("Params: " . implode(", ", $params));
+
+    if (count($params) !== strlen($types)) {
+        error_log("Mismatch between number of types and parameters");
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Mismatch between number of types and parameters'];
+    }
+
+    $stmt->bind_param($types, ...$params);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        return ['status' => 'success', 'timestamp' => time(), 'data' => 'Show inserted successfully', 'inserted_id' => $stmt->insert_id];
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Failed to insert show'];
+    }
+}
+
+public function insertSeason($input) {
+    $allowedFields = ['show_id', 'number', 'episode_count', 'premiere_date', 'end_date', 'summary'];
+    $fields = [];
+    $placeholders = [];
+    $params = [];
+    $types = '';
+
+    // Extract fields to be inserted
+    if (isset($input['insert']) && is_array($input['insert'])) {
+        foreach ($input['insert'] as $field => $value) {
+            if (in_array($field, $allowedFields)) {
+                $fields[] = $field;
+                $placeholders[] = '?';
+                $params[] = $value;
+                $types .= $this->getType($value);
+            } else {
+                return ['status' => 'error', 'timestamp' => time(), 'data' => 'Invalid insert fields'];
+            }
+        }
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No fields to insert'];
+    }
+
+    if (empty($fields)) {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No fields to insert'];
+    }
+
+    $sql = "INSERT INTO seasons (" . implode(", ", $fields) . ") VALUES (" . implode(", ", $placeholders) . ")";
+
+    // Debugging: Output the constructed SQL query
+    error_log("SQL Query: $sql");
+
+    $stmt = $this->db->prepare($sql);
+    if (!$stmt) {
+        // Debugging: Output the SQL error
+        error_log("SQL Error: " . $this->db->error);
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Failed to prepare SQL statement'];
+    }
+
+    // Debugging: Ensure types and params match
+    error_log("Types: $types");
+    error_log("Params: " . implode(", ", $params));
+
+    if (count($params) !== strlen($types)) {
+        error_log("Mismatch between number of types and parameters");
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Mismatch between number of types and parameters'];
+    }
+
+    $stmt->bind_param($types, ...$params);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        return ['status' => 'success', 'timestamp' => time(), 'data' => 'Season inserted successfully', 'inserted_id' => $stmt->insert_id];
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Failed to insert season'];
+    }
+}
+
+public function insertEpisode($input) {
+    $allowedFields = ['show_id', 'season', 'number', 'name', 'airdate', 'runtime', 'summary', 'rating', 'image'];
+    $fields = [];
+    $placeholders = [];
+    $params = [];
+    $types = '';
+
+    // Extract fields to be inserted
+    if (isset($input['insert']) && is_array($input['insert'])) {
+        foreach ($input['insert'] as $field => $value) {
+            if (in_array($field, $allowedFields)) {
+                $fields[] = $field;
+                $placeholders[] = '?';
+                $params[] = $value;
+                $types .= $this->getType($value);
+            } else {
+                return ['status' => 'error', 'timestamp' => time(), 'data' => 'Invalid insert fields'];
+            }
+        }
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No fields to insert'];
+    }
+
+    if (empty($fields)) {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No fields to insert'];
+    }
+
+    $sql = "INSERT INTO episodes (" . implode(", ", $fields) . ") VALUES (" . implode(", ", $placeholders) . ")";
+
+    // Debugging: Output the constructed SQL query
+    error_log("SQL Query: $sql");
+
+    $stmt = $this->db->prepare($sql);
+    if (!$stmt) {
+        // Debugging: Output the SQL error
+        error_log("SQL Error: " . $this->db->error);
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Failed to prepare SQL statement'];
+    }
+
+    // Debugging: Ensure types and params match
+    error_log("Types: $types");
+    error_log("Params: " . implode(", ", $params));
+
+    if (count($params) !== strlen($types)) {
+        error_log("Mismatch between number of types and parameters");
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Mismatch between number of types and parameters'];
+    }
+
+    $stmt->bind_param($types, ...$params);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        return ['status' => 'success', 'timestamp' => time(), 'data' => 'Episode inserted successfully', 'inserted_id' => $stmt->insert_id];
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Failed to insert episode'];
+    }
+}
+
+public function deleteEpisode($input) {
+    $conditions = [];
+    $params = [];
+    $types = '';
+
+    // Apply search filters to determine which record(s) to delete
+    if (isset($input['search']) && is_array($input['search'])) {
+        $search = $input['search'];
+        if (isset($search['id'])) {
+            $conditions[] = "id = ?";
+            $params[] = $search['id'];
+            $types .= 'i';
+        }
+        if (isset($search['show_id'])) {
+            $conditions[] = "show_id = ?";
+            $params[] = $search['show_id'];
+            $types .= 'i';
+        }
+        if (isset($search['season'])) {
+            $conditions[] = "season = ?";
+            $params[] = $search['season'];
+            $types .= 'i';
+        }
+        if (isset($search['number'])) {
+            $conditions[] = "number = ?";
+            $params[] = $search['number'];
+            $types .= 'i';
+        }
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No criteria provided for deletion'];
+    }
+
+    if (empty($conditions)) {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No criteria provided for deletion'];
+    }
+
+    $sql = "DELETE FROM episodes WHERE " . implode(' AND ', $conditions);
+
+    // Debugging: Output the constructed SQL query
+    error_log("SQL Query: $sql");
+
+    $stmt = $this->db->prepare($sql);
+    if (!$stmt) {
+        // Debugging: Output the SQL error
+        error_log("SQL Error: " . $this->db->error);
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Failed to prepare SQL statement'];
+    }
+
+    if ($params) {
+        $stmt->bind_param($types, ...$params);
+    }
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        return ['status' => 'success', 'timestamp' => time(), 'data' => 'Episode deleted successfully'];
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No records deleted'];
+    }
+}
+
+public function deleteSeason($input) {
+    $conditions = [];
+    $params = [];
+    $types = '';
+
+    // Apply search filters to determine which record(s) to delete
+    if (isset($input['search']) && is_array($input['search'])) {
+        $search = $input['search'];
+        if (isset($search['id'])) {
+            $conditions[] = "id = ?";
+            $params[] = $search['id'];
+            $types .= 'i';
+        }
+        if (isset($search['show_id'])) {
+            $conditions[] = "show_id = ?";
+            $params[] = $search['show_id'];
+            $types .= 'i';
+        }
+        if (isset($search['number'])) {
+            $conditions[] = "number = ?";
+            $params[] = $search['number'];
+            $types .= 'i';
+        }
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No criteria provided for deletion'];
+    }
+
+    if (empty($conditions)) {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No criteria provided for deletion'];
+    }
+
+    $sql = "DELETE FROM seasons WHERE " . implode(' AND ', $conditions);
+
+    // Debugging: Output the constructed SQL query
+    error_log("SQL Query: $sql");
+
+    $stmt = $this->db->prepare($sql);
+    if (!$stmt) {
+        // Debugging: Output the SQL error
+        error_log("SQL Error: " . $this->db->error);
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Failed to prepare SQL statement'];
+    }
+
+    if ($params) {
+        $stmt->bind_param($types, ...$params);
+    }
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        return ['status' => 'success', 'timestamp' => time(), 'data' => 'Season deleted successfully'];
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No records deleted'];
+    }
+}
+
+public function deleteShow($input) {
+    $conditions = [];
+    $params = [];
+    $types = '';
+
+    // Apply search filters to determine which record(s) to delete
+    if (isset($input['search']) && is_array($input['search'])) {
+        $search = $input['search'];
+        if (isset($search['id'])) {
+            $conditions[] = "id = ?";
+            $params[] = $search['id'];
+            $types .= 'i';
+        }
+        if (isset($search['name'])) {
+            $conditions[] = "name LIKE ?";
+            $params[] = "%" . $search['name'] . "%";
+            $types .= 's';
+        }
+        if (isset($search['language'])) {
+            $conditions[] = "language LIKE ?";
+            $params[] = "%" . $search['language'] . "%";
+            $types .= 's';
+        }
+        if (isset($search['genres'])) {
+            $conditions[] = "genres LIKE ?";
+            $params[] = "%" . $search['genres'] . "%";
+            $types .= 's';
+        }
+        if (isset($search['status'])) {
+            $conditions[] = "status LIKE ?";
+            $params[] = "%" . $search['status'] . "%";
+            $types .= 's';
+        }
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No criteria provided for deletion'];
+    }
+
+    if (empty($conditions)) {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No criteria provided for deletion'];
+    }
+
+    $sql = "DELETE FROM shows WHERE " . implode(' AND ', $conditions);
+
+    // Debugging: Output the constructed SQL query
+    error_log("SQL Query: $sql");
+
+    $stmt = $this->db->prepare($sql);
+    if (!$stmt) {
+        // Debugging: Output the SQL error
+        error_log("SQL Error: " . $this->db->error);
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'Failed to prepare SQL statement'];
+    }
+
+    if ($params) {
+        $stmt->bind_param($types, ...$params);
+    }
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        return ['status' => 'success', 'timestamp' => time(), 'data' => 'Show deleted successfully'];
+    } else {
+        return ['status' => 'error', 'timestamp' => time(), 'data' => 'No records deleted'];
+    }
+}
+
+
+    }
+
+
+    
+
 
 
  
@@ -974,6 +1334,31 @@ switch ($input['type']) {
                 $streams = new Streams($db);
                 $response = $streams->updateSeasons($input);
                 break;
+        case 'insertShow':
+        $streams = new Streams($db);
+        $response = $streams->insertShow($input);
+        break;
+        case 'insertSeason':
+            $streams = new Streams($db);
+            $response = $streams->insertSeason($input);
+            break;
+        case 'insertEpisode':
+              $streams = new Streams($db);
+              $response = $streams->insertEpisode($input);
+                break;
+                case 'deleteEpisode':
+                    $streams = new Streams($db);
+                    $response = $streams->deleteEpisode($input);
+                    break;
+                    case 'deleteSeason':
+                        $streams = new Streams($db);
+                        $response = $streams->deleteSeason($input);
+                        break;
+
+                        case 'deleteShow':
+                            $streams = new Streams($db);
+                            $response = $streams->deleteShow($input);
+                            break;
     default:
         $response = ['status' => 'error', 'timestamp' => time(), 'data' => 'Invalid request type'];
         break;
