@@ -34,9 +34,9 @@ document.addEventListener("DOMContentLoaded", function() {
         fetchShowsFromAPI(actionRequestBody, populateActionShows);
     }
 
-    function fetchRomanceShows() {
-        // Fetch romance shows
-        const romanceRequestBody = {
+    function fetchThrillerShows() {
+        // Fetch thriller shows
+        const thrillerRequestBody = {
             type: "getShows",
             return: 20,
             search: {
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
             order: "DESC"
         };
 
-        fetchShowsFromAPI(romanceRequestBody, populateRomanceShows);
+        fetchShowsFromAPI(thrillerRequestBody, populateThrillerShows);
     }
 
     function fetchDramaShows() {
@@ -66,6 +66,40 @@ document.addEventListener("DOMContentLoaded", function() {
         };
 
         fetchShowsFromAPI(dramaRequestBody, populateDramaShows);
+    }
+
+    function fetchComedyShows() {
+        // Fetch comedy shows
+        const comedyRequestBody = {
+            type: "getShows",
+            return: 20,
+            search: {
+                language: "English",
+                rating_min: 8.0,
+                genres: "Comedy"
+            },
+            sort: "rating",
+            order: "DESC"
+        };
+
+        fetchShowsFromAPI(comedyRequestBody, populateComedyShows);
+    }
+
+    function fetchSciFiShows() {
+        // Fetch sci-fi shows
+        const sciFiRequestBody = {
+            type: "getShows",
+            return: 20,
+            search: {
+                language: "English",
+                rating_min: 8.0,
+                genres: "Science-Fiction"
+            },
+            sort: "rating",
+            order: "DESC"
+        };
+
+        fetchShowsFromAPI(sciFiRequestBody, populateSciFiShows);
     }
 
     function fetchShowsFromAPI(requestBody, callback) {
@@ -133,13 +167,13 @@ document.addEventListener("DOMContentLoaded", function() {
             actionCategory.appendChild(showElement);
         });
 
-        // After populating action shows, fetch romance shows
-        fetchRomanceShows();
+        // After populating action shows, fetch thriller shows
+        fetchThrillerShows();
     }
 
-    function populateRomanceShows(shows) {
-        const romanceCategory = document.getElementById('thriller');
-        romanceCategory.innerHTML = ''; // Clear existing content
+    function populateThrillerShows(shows) {
+        const thrillerCategory = document.getElementById('thriller');
+        thrillerCategory.innerHTML = ''; // Clear existing content
 
         shows.forEach(show => {
             const showElement = document.createElement('div');
@@ -154,10 +188,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 </div>
             `;
 
-            romanceCategory.appendChild(showElement);
+            thrillerCategory.appendChild(showElement);
         });
 
-        // After populating romance shows, fetch drama shows
+        // After populating thriller shows, fetch drama shows
         fetchDramaShows();
     }
 
@@ -179,6 +213,54 @@ document.addEventListener("DOMContentLoaded", function() {
             `;
 
             dramaCategory.appendChild(showElement);
+        });
+
+        // After populating drama shows, fetch comedy shows
+        fetchComedyShows();
+    }
+
+    function populateComedyShows(shows) {
+        const comedyCategory = document.getElementById('comedy');
+        comedyCategory.innerHTML = ''; // Clear existing content
+
+        shows.forEach(show => {
+            const showElement = document.createElement('div');
+            showElement.classList.add('show');
+
+            showElement.innerHTML = `
+                <div class="show-title">
+                    <h3>${show.name}</h3>
+                </div>
+                <div class="show-image-container">
+                    <img class="show-image" src="${show.image}" alt="${show.name}">
+                </div>
+            `;
+
+            comedyCategory.appendChild(showElement);
+        });
+
+        // After populating comedy shows, fetch sci-fi shows
+        fetchSciFiShows();
+    }
+
+    function populateSciFiShows(shows) {
+        const sciFiCategory = document.getElementById('sci-fi');
+        sciFiCategory.innerHTML = ''; // Clear existing content
+
+        shows.forEach(show => {
+            const showElement = document.createElement('div');
+            showElement.classList.add('show');
+
+            showElement.innerHTML = `
+                <div class="show-title">
+                    <h3>${show.name}</h3>
+                </div>
+                <div class="show-image-container">
+                    <img class="show-image" src="${show.image}" alt="${show.name}">
+                </div>
+            `;
+
+            sciFiCategory.appendChild(showElement);
         });
     }
 });

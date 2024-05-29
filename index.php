@@ -19,7 +19,7 @@
     <h1 class="header">Stream.Binge.Repeat.Hoop has it all!</h1>
 
     <div id="categories">
-        <h2 class="category-title">Browse shows</h2>
+        <h2 class="category-title">Trending shows</h2>
         <div class="category" id="category1">
             <!-- General shows will be dynamically inserted here -->
         </div>
@@ -35,6 +35,14 @@
         <h2 class="category-title">Drama</h2>
         <div class="category" id="drama">
             <!-- drama shows will be dynamically inserted here -->
+        </div>
+        <h2 class="category-title">Comedy</h2>
+        <div class="category" id="comedy">
+            <!-- comedy shows will be dynamically inserted here -->
+        </div>
+        <h2 class="category-title">Science-Fiction</h2>
+        <div class="category" id="sci-fi">
+            <!-- sci-fi shows will be dynamically inserted here -->
         </div>
     </div>
 
