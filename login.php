@@ -14,7 +14,7 @@
 <body>
     <div class="login-container">
         <div class="login-logo">
-            <img src="../images/hoop.png" alt="Hoop Logo">
+            <img src="Hoop-logo.png" alt="Hoop Logo">
         </div>
         <div class="login-form-container">
             <form id="login-form">

@@ -9,7 +9,7 @@
 <body>
     <div class="register-container">
         <div class="register-logo">
-            <img src="../images/hoop.png" alt="Hoop Logo">
+            <img src="Hoop-logo.png" alt="Hoop Logo">
         </div>
         <div class="register-form-container">
             <form id="register-form">
